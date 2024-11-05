@@ -144,3 +144,6 @@ dmypy.json
 .history/
 
 .mypy_cache
+
+# Исключение базы данных
+bot_users.db
