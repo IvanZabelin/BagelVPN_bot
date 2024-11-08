@@ -12,18 +12,18 @@ async def buy_handler(callback: CallbackQuery, bot: Bot):
     await callback.answer('')
     await bot.send_invoice(
         chat_id=callback.from_user.id,
-        title="Оформление подписки",
-        description="Один месяц", 
+        title="Оформление подписки на VPN",
+        description="Один месяц",
         payload="1",
         provider_token=pay_secret_key,
         currency=CURRENCY,
         start_parameter="test_bot",
         prices=[{"label": "Один месяц", "amount": PRICE}],
-        need_shipping_address=True,
-        need_name=True,
-        need_email=True,
-        send_phone_number_to_provider=True,
-        send_email_to_provider=True,
+        need_shipping_address=False,
+        need_name=False,
+        need_email=False,
+        send_phone_number_to_provider=False,
+        send_email_to_provider=False,
         is_flexible=False
     )
 

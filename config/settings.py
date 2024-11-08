@@ -6,6 +6,7 @@ token = config('TOKEN_BOT')
 pay_secret_key = config('PAY_SECRET_KEY')
 api_url = config('API_URL')
 cert_sha256 = config('CERT_SHA')
+admin = config('ADMIN')
 CURRENCY = 'RUB'
 SHOP_ID = '506751'
 PRICE = '15000'

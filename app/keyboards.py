@@ -6,7 +6,7 @@ main = ReplyKeyboardMarkup(keyboard=[
     [KeyboardButton(text='Оформить VPN')],
     [KeyboardButton(text='Мой профиль')],
     [KeyboardButton(text='📄 Инструкция')],
-    [KeyboardButton(text='📢 FAQ')],
+    [KeyboardButton(text='📢 О боте')],
 ], resize_keyboard=True, input_field_placeholder="Выберите опцию")
 
 # Инлайн-клавиатура с тарифами и оплатой

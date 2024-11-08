@@ -1,10 +1,11 @@
 from aiogram import F, Router, Bot
 from aiogram.filters import CommandStart
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 
 import app.keyboards as kb
 from app.database import add_user_to_db, get_user_info, get_user_key
 from app.payment import router as payment_router
+from config.settings import admin
 
 router = Router()
 router.include_router(payment_router)
@@ -26,9 +27,16 @@ async def get_a_vpn(message: Message):
 
 
 @router.callback_query(F.data == "tariffs")
-async def get_tariffs(callback: Message):
-    await callback.answer('')
-    await callback.message.answer("Тарифы: \nОдин месяц - 150руб.")
+async def get_tariffs(callback: CallbackQuery):
+    await callback.answer()
+    await callback.message.delete()
+    text = ("<b>Тарифы: \nОдин месяц - 150₽.</b>")
+    await callback.message.answer(
+        text=text,
+        reply_markup=kb.get_a_vpn,
+        disable_web_page_preview=True,
+        parse_mode='HTML'
+    )
 
 
 @router.message(F.text == "Мой профиль")
@@ -56,6 +64,18 @@ async def get_profile(message: Message, bot: Bot):
 
     await message.reply(response_message)
 
+
 @router.message(F.text == "📄 Инструкция")
 async def get_a_vpn(message: Message):
     await message.reply("📄 Инструкция", reply_markup=kb.devices)
+
+
+@router.message(F.text == "📢 О боте")
+async def get_info_bot(message: Message):
+    text = (
+        "Bagel VPN: Ваш ключ к безопасности и свободе в сети.\n"
+        "Получите доступ к заблокированным сайтам, защитите свои\n"
+        "данные и наслаждайтесь безопасным интернетом с Bagel VPN!\n"
+        f"Тех поддержка {admin}"
+    )
+    await message.reply(text=text)
