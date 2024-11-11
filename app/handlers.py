@@ -30,7 +30,9 @@ async def get_a_vpn(message: Message):
 async def get_tariffs(callback: CallbackQuery):
     await callback.answer()
     await callback.message.delete()
-    text = ("<b>Тарифы: \nОдин месяц - 150₽.</b>")
+    text = (
+        "<b>Тарифы: \nОдин месяц(200гб) - 150₽.</b>\n"
+        )
     await callback.message.answer(
         text=text,
         reply_markup=kb.get_a_vpn,
